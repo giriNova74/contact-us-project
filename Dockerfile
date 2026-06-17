@@ -3,9 +3,9 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
-COPY requirements.txt
+#COPY requirements.txt
 
-RUN pip install -r requirements.txt -t /app/site-packages
+#RUN pip install -r requirements.txt -t /app/site-packages
 
 COPY . . 
 # stage 2 runtime stage
@@ -15,6 +15,7 @@ WORKDIR /app
 
 COPY --from=builder /app /app
 
-ENV PYTHONPATH=/app/site-packages
+#ENV PYTHONPATH=/app/site-packages
+ENV PYTHONPATH=/app
 
 CMD ["python","app.py"]
